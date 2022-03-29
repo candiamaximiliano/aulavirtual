@@ -1,0 +1,18 @@
+.loginForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 8% 15% 8% 15%;
+}
+
+.rightContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}

@@ -1,8 +1,10 @@
 const { Router } = require('express');
-const { msgClases } = require('../controllers/clases.controller')
+const { postVideo, getVideos } = require('../controllers/clases.controller')
 
 const router = Router();
 
-router.get('/clases', msgClases);
+router.get('/', getVideos);
+
+router.post('/', postVideo);
 
 module.exports = router;

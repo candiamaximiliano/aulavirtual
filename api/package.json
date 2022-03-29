@@ -1,21 +1,28 @@
 {
-  "name": "api",
+  "name": "backend-aula-virtual",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server built in Express.JS for Profesorado en Ritmos Caribeños.",
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js",
+    "dev": "nodemon src/index.js",
     "lint": "eslint ."
   },
-  "author": "",
+  "author": "Maximiliano Andrés Candia",
   "license": "ISC",
   "dependencies": {
+    "@sentry/node": "6.19.2",
+    "@sentry/tracing": "6.19.2",
+    "axios": "^0.26.1",
     "cors": "2.8.5",
+    "dotenv": "16.0.0",
     "express": "4.17.3",
-    "mongoose": "6.2.7",
-    "morgan": "1.10.0"
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.3",
+    "sequelize": "^6.17.0"
   },
   "devDependencies": {
-    "eslint": "8.11.0"
+    "eslint": "8.12.0"
   }
 }
