@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config");
-const User = require("../models/User.model");
+const { User } = require("../config/db.config");
 const { TokenExpiredError } = jwt;
 
 const catchError = (err, res) => {
@@ -42,31 +42,31 @@ const isAdmin = (req, res, next) => {
 };
 
 const isModerator = async (req, res, next) => {
-  console.log(`---- User ---- ${User} ----`)
-  const pepito = await User.findByPk(1);
-  const roles = pepito.getRoles();
-  for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "moderator") {
-          next();
-          return;
-        }
-      }
-  res.status(403).send({
-        message: "Require Moderator Role!"
-      });
-  // User.findByPk(req.userId).then(user => {
-  //   user.getRoles().then(roles => {
-  //     for (let i = 0; i < roles.length; i++) {
+  // console.log(`---- User ---- ${User} ----`)
+  // const pepito = await User.findByPk(req.userId);
+  // const roles = pepito.getRoles();
+  // for (let i = 0; i < roles.length; i++) {
   //       if (roles[i].name === "moderator") {
   //         next();
   //         return;
   //       }
   //     }
-  //     res.status(403).send({
+  // res.status(403).send({
   //       message: "Require Moderator Role!"
   //     });
-  //   });
-  // });
+  User.findByPk(req.userId).then(user => {
+    user.getRoles().then(roles => {
+      for (let i = 0; i < roles.length; i++) {
+        if (roles[i].name === "moderator") {
+          next();
+          return;
+        }
+      }
+      res.status(403).send({
+        message: "Require Moderator Role!"
+      });
+    });
+  });
 };
 
 const isModeratorOrAdmin = (req, res, next) => {

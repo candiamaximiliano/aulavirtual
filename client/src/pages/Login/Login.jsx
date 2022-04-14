@@ -18,26 +18,26 @@ const Login = (props) => {
   const navigate = useNavigate();
   const form = useRef();
   const checkBtn = useRef();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [usuario, setUsuario] = useState("");
+  const [contraseña, setContraseña] = useState("");
   const [loading, setLoading] = useState(false);
   // const { isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
   const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
+    const usuario = e.target.value;
+    setUsuario(usuario);
   };
   const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
+    const contraseña = e.target.value;
+    setContraseña(contraseña);
   };
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
-      dispatch(login(username, password))
+      dispatch(login(usuario, contraseña))
         .then(() => {
           navigate("/profile");
           window.location.reload();
@@ -68,23 +68,23 @@ const Login = (props) => {
         />
         <Form onSubmit={handleLogin} ref={form}>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="usuario">Usuario</label>
             <Input
               type="text"
               className="form-control"
-              name="username"
-              value={username}
+              name="usuario"
+              value={usuario}
               onChange={onChangeUsername}
               validations={[required]}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="contraseña">Contraseña</label>
             <Input
               type="password"
               className="form-control"
-              name="password"
-              value={password}
+              name="contraseña"
+              value={contraseña}
               onChange={onChangePassword}
               validations={[required]}
             />

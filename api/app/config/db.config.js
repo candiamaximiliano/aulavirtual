@@ -31,8 +31,8 @@ const { User, Role, RefreshToken, Curso, Materia, Clase } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-User.belongsToMany(Curso, { through: 'alumnos_cursos'});
-Curso.belongsToMany(User, { through: 'alumnos_cursos'});
+User.belongsToMany(Curso, { through: 'users_cursos'});
+Curso.belongsToMany(User, { through: 'users_cursos'});
 Curso.hasMany(Materia);
 Materia.belongsTo(Curso);
 Materia.hasMany(Clase);

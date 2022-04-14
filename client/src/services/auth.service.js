@@ -9,11 +9,11 @@ const register = (username, email, password) => {
   });
 };
 
-const login = (username, password) => {
+const login = (usuario, contraseña) => {
   return api
     .post("/auth/signin", {
-      username,
-      password
+      usuario,
+      contraseña
     })
     .then((response) => {
       if (response.data.accessToken) {

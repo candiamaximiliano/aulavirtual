@@ -22,7 +22,7 @@ router.get(
 
 router.get(
   "/test/mod",
-  [authJwt.verifyToken, /* authJwt.isModerator */],
+  [authJwt.verifyToken, authJwt.isModerator],
   controller.moderatorBoard
 );
 

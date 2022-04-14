@@ -6,10 +6,35 @@ var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
   // Save User to Database
+  const {
+    nombre,
+    apellido,
+    usuario,
+    email,
+    contraseña,
+    dni,
+    fechaDeNacimiento,
+    direccion,
+    numeroDeContacto,
+    consentimientoWhatsapp,
+    instructorado,
+    especializacion,
+    profesorado
+  } = req.body;
   User.create({
-    username: req.body.username,
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)
+    nombre,
+    apellido,
+    usuario,
+    email,
+    contraseña: bcrypt.hashSync(contraseña, 8),
+    dni,
+    fechaDeNacimiento,
+    direccion,
+    numeroDeContacto,
+    consentimientoWhatsapp,
+    instructorado,
+    especializacion,
+    profesorado
   })
   .then(user => {
     if (req.body.roles) {
@@ -39,7 +64,7 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
   User.findOne({
     where: {
-      username: req.body.username
+      usuario: req.body.usuario
     }
   })
     .then(async (user) => {
@@ -47,8 +72,8 @@ exports.signin = (req, res) => {
         return res.status(404).send({ message: "User Not found." });
       }
       const passwordIsValid = bcrypt.compareSync(
-        req.body.password,
-        user.password
+        req.body.contraseña,
+        user.contraseña
       );
       if (!passwordIsValid) {
         return res.status(401).send({
@@ -67,7 +92,7 @@ exports.signin = (req, res) => {
         }
         res.status(200).send({
           id: user.id,
-          username: user.username,
+          usuario: user.usuario,
           email: user.email,
           roles: authorities,
           accessToken: token,
