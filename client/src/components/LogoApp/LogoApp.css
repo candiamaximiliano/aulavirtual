@@ -27,6 +27,7 @@
   max-width: 30wh;
 }
 
-img {
-  width: 100%;
+img.logoLayout {
+  object-fit: contain;
+  width: 35%;
 }

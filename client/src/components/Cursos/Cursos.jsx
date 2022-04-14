@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Footer from "../Footer/Footer";
+import Nav from "../Nav/Nav";
 
 const Cursos = () => {
   return (
     <>
+      <Nav />
       <h1>Seleccione un año</h1>
       <ul>
         <li>
@@ -20,6 +23,7 @@ const Cursos = () => {
           <Link to="/cursos/profesorado">Profesorado en Ritmos Caribeños</Link>
         </li>
       </ul>
+      <Footer />
     </>
   );
 };

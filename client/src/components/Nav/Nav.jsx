@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Logo from "../../logo.svg";
 
 const Nav = () => {
   return (
-    <>
-      <h1>LALALALAL</h1>
-      <Link to={"/"}>Home</Link>
-      <Link to={"/house/create"}>Create House</Link>
-    </>
+    <div className="headerContainer">
+      <Link to={"/"}>
+        <img src={Logo} alt="headerLogo" />
+      </Link>
+    </div>
   );
 };
 
