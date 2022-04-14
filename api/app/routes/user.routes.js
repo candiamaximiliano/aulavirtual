@@ -22,13 +22,13 @@ router.get(
 
 router.get(
   "/test/mod",
-  [authJwt.verifyToken, authJwt.isModerator],
+  [authJwt.verifyToken, /* authJwt.isModerator */],
   controller.moderatorBoard
 );
 
 router.get(
   "/test/admin",
-  [authJwt.verifyToken, authJwt.isAdmin],
+  [authJwt.verifyToken, /* authJwt.isAdmin */],
   controller.adminBoard
 );
 
