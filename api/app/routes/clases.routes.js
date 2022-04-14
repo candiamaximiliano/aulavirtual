@@ -5,13 +5,13 @@ const router = Router();
 
 // router.get('/', getClases);
 
-router.get('/', getClaseById);
+router.get('/clases/', getClaseById);
 
-router.post('/Lomocompleto1', postClase);
+router.post('/clases/', postClase);
 
-router.post('/Lomocompleto1', postClase);
+router.post('/clases/', postClase);
 
-router.put('/', putClase);
+router.put('/clases/', putClase);
 
 router.delete('/', deleteClase);
 

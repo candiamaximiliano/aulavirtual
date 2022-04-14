@@ -3,14 +3,14 @@ const { getMaterias, getMateriaById, postMateria, putMateria, deleteMateria } = 
 
 const router = Router();
 
-router.get('/', getMaterias);
+router.get('/materias/', getMaterias);
 
-router.get('/', getMateriaById);
+router.get('/materias/', getMateriaById);
 
-router.post('/', postMateria);
+router.post('/materias/', postMateria);
 
-router.put('/', putMateria);
+router.put('/materias/', putMateria);
 
-router.delete('/', deleteMateria);
+router.delete('/materias/', deleteMateria);
 
 module.exports = router;

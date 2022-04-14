@@ -1,4 +1,4 @@
-const { Curso } = require('../db');
+const { Curso } = require('../config/db.config');
 
 const getCursos = async (req, res) => {
   try {
@@ -21,7 +21,7 @@ const getCursoById = async (req, res) => {
 
 const postCurso = async (req, res) => {
   try {
-    const { curso.nombre } = req.body;
+    const { nombre } = req.body;
     const cursoCreado = Curso.create({
       nombre,
     })

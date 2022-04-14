@@ -1,4 +1,4 @@
-const { Clase } = require('../db');
+const { Clase } = require('../config/db.config');
 
 const getClases = async () => {
   try {

@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
-const sequelize = new Sequelize(`postgres://${database.user}:${database.password}@${database.host}/freshfoodapp`, {
+const sequelize = new Sequelize(`postgres://${database.user}:${database.password}@${database.host}/profesorado`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -27,12 +27,16 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { User, Role, RefreshToken, Recipe, Diet } = sequelize.models;
+const { User, Role, RefreshToken, Curso, Materia, Clase } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Recipe.belongsToMany(Diet, { through: 'recipes_diets' });
-Diet.belongsToMany(Recipe, { through: 'recipes_diets' });
+User.belongsToMany(Curso, { through: 'alumnos_cursos'});
+Curso.belongsToMany(User, { through: 'alumnos_cursos'});
+Curso.hasMany(Materia);
+Materia.belongsTo(Curso);
+Materia.hasMany(Clase);
+Clase.belongsTo(Materia);
 Role.belongsToMany(User, {
   through: "user_roles",
   foreignKey: "roleId",

@@ -13,7 +13,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 router.use(express.json());
 
-router.post("/signup",
+router.post("/auth/signup",
   [
     veryfySignUp.checkDuplicateUsernameOrEmail,
     verifySignUp.checkRolesExisted
@@ -21,9 +21,9 @@ router.post("/signup",
   controller.signup
 );
 
-router.post("/signin", controller.signin);
+router.post("/auth/signin", controller.signin);
 
-router.post("/refreshtoken", controller.refreshToken);
+router.post("/auth/refreshtoken", controller.refreshToken);
 
 
 module.exports = router;

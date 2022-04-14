@@ -24,7 +24,7 @@ function initial() {
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(config.port, () => {
-    // initial();
+    initial();
     console.log(`
     ################################################
           🛡️  Server listening on port: ${config.port} 🛡️

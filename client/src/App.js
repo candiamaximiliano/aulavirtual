@@ -1,34 +1,36 @@
+import React from "react";
 import {
   Routes,
   Route,
 } from "react-router-dom";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
-import LogoApp from "./components/LogoApp/LogoApp";
-import Login from "./components/Login/Login";
-import Registro from "./components/Registro/Registro";
-import Cursos from "./components/Cursos/Cursos"
-import Instructorado from "./components/Instructorado/Instructorado";
-import Especializacion from "./components/Especialización/Especializacion";
-import Profesorado from "./components/Profesorado/Profesorado";
-import { useState } from "react";
-import SubirContenido from "./components/SubirContenido/SubirContenido";
+
+import LogoApp from "./pages/LogoApp/LogoApp";
+import { Nav } from "./components/Nav/Nav";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Registro/Registro";
+import Home from "./pages/Home/Home";
+import Profile from "./pages/Perfil/Profile";
+import BoardUser from "./pages/Boards/User/BoardUser";
+import BoardModerator from "./pages/Boards/Profesor/BoardProfesor";
+import BoardAdmin from "./pages/Boards/Admin/BoardAdmin";
+
 
 function App() {
-
-  const [errorMessage, setErrorMessage] = useState(null);
-  
   return (
       <>
+        <Nav />
         <Routes>
           <Route path="/" element={<LogoApp />} />
-          <Route path="login" element={<Login errorMessage = {errorMessage} setErrorMessage = {setErrorMessage}/>} />
-          <Route path="registro" element={<Registro errorMessage = {errorMessage} setErrorMessage = {setErrorMessage}/>} />
-          <Route path="cursos" element={<Cursos />} />
-          <Route path="cursos/instructorado" element={<Instructorado />} />
-          <Route path="cursos/especializacion" element={<Especializacion />} />
-          <Route path="cursos/profesorado" element={<Profesorado />} />
-          <Route path="cursos/subircontenido" element={<SubirContenido />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/user" element={<BoardUser />} />
+          <Route path="/mod" element={<BoardModerator />} />
+          <Route path="/admin" element={<BoardAdmin />} />
       </Routes>
       </>
   );

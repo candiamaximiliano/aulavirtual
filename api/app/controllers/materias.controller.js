@@ -1,4 +1,4 @@
-const { Materia } = require('../db');
+const { Materia } = require('../config/db.config');
 
 const getMaterias = async (req, res) => {
   try {

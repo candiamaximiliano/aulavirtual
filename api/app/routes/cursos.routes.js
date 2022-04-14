@@ -3,14 +3,14 @@ const { getCursos, getCursoById, postCurso, putCurso, deleteCurso } = require('.
 
 const router = Router();
 
-router.get('/', getCursos);
+router.get('/cursos/', getCursos);
 
-router.get('/', getCursoById);
+router.get('/cursos/', getCursoById);
 
-router.post('/', postCurso);
+router.post('/cursos/', postCurso);
 
-router.put('/', putCurso);
+router.put('/cursos/', putCurso);
 
-router.delete('/', deleteCurso);
+router.delete('/cursos/', deleteCurso);
 
 module.exports = router;
