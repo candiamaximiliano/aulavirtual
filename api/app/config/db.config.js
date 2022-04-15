@@ -35,8 +35,9 @@ User.belongsToMany(Curso, { through: 'users_cursos'});
 Curso.belongsToMany(User, { through: 'users_cursos'});
 Curso.hasMany(Materia);
 Materia.belongsTo(Curso);
-Materia.hasMany(Clase);
 Clase.belongsTo(Materia);
+Materia.hasMany(Clase);
+Clase.belongsTo(Curso);
 Role.belongsToMany(User, {
   through: "user_roles",
   foreignKey: "roleId",

@@ -1,23 +1,23 @@
-const { Materia } = require('../config/db.config');
+const { Clase, Curso, Materia } = require('../config/db.config');
 
-// exports.allAccess = (req, res) => {
-//   res.status(200).send("Public Content.");
-// };
-// exports.userBoard = (req, res) => {
-//   res.status(200).send("User Content.");
-// };
-// exports.adminBoard = (req, res) => {
-//   res.status(200).send("Admin Content.");
-// };
-// exports.moderatorBoard = (req, res) => {
-//   res.status(200).send("Moderator Content.");
-// };
-
-const getMaterias = async (req, res) => {
+const getMaterias = async (req, res, next) => {
   try {
-    const materias = Materia.findAll();
-    res.send(materias);    
+    const totalMaterias = await Materia.findAll({
+      attributes: ['id', 'nombre'],
+      include: [{
+        model: Curso,
+        attributes: ['nombre']
+      },
+      {
+        model: Clase,
+        attributes: ['nombre', 'url', 'profesores', 'recursos']
+      }],
+    });
+    totalMaterias.length?
+      res.status(200).send(totalMaterias):
+      res.status(404).send('No existen materias');
   } catch (error) {
+    console.error(error);
     next(error);
   }
 };
@@ -32,49 +32,44 @@ const getMateriaById = async (req, res) => {
   }
 };
 
-const postMateria = async (req, res) => {
-  try {
-    const { nombre } = req.body;
-    const materiaCreada = await Materia.create({
-      nombre: nombre,
-    });
-    res.send('Nueva materia creada correctamente')
-  } catch (error) {
-    next(error);
-  }
-};
-
-const putMateria = async (req, res) => {
+const putMateria = async (req, res, next) =>{
   try {
     const { id } = req.params;
     const { nombre } = req.body;
-    const materiaUpdated = await Materia.update({
-      nombre: nombre,
-    }, {
-      where: {
-        id : id,
-      }
-    })
+
+    const materiaEncontrada = await Materia.findOne({
+      where: { id: id },
+    });
+
+    materiaEncontrada === null
+    ? res.status(404).send('No se encontró una materia con ese id')
+    : await Materia.update({
+        nombre: nombre,
+      },
+      { where: { id: id}
+      });
     res.send('Materia actualizada correctamente')
   } catch (error) {
+    console.error(error);
     next(error);
   }
 };
 
-const deleteMateria = async (req, res) => {
+const deleteMateria = async (req, res, next) =>{
   try {
     const { id } = req.params;
-    const materiaDestroyed = Materia.destroy({
+    console.log("id de materia: " + id)
+    await Materia.destroy({
       where: {
         id: id,
       }
     })
-    res.send('Materia eliminada correctamente!')
+    res.send('Materia eliminada correctamente')
   } catch (error) {
     next(error);
   }
 };
 
 module.exports = {
-  getMaterias, getMateriaById, postMateria, putMateria, deleteMateria
+  getMaterias, getMateriaById, putMateria, deleteMateria
 }

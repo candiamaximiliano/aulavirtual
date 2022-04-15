@@ -2,7 +2,7 @@ const config = require('./app/config/index');
 const server = require('./app/config/app.config');
 const { conn } = require('./app/config/db.config');
 
-const { Role } = require("./app/config/db.config");
+const { Role, Curso } = require("./app/config/db.config");
 
 function initial() {
   Role.create({
@@ -18,6 +18,18 @@ function initial() {
   Role.create({
     id: 3,
     name: "admin"
+  });
+  
+  Curso.create({
+    nombre: "Instructorado en Salsa y Bachata"
+  });
+
+  Curso.create({
+    nombre: "Especialización en Estilo y Coreografía"
+  });
+
+  Curso.create({
+    nombre: "Profesorado en Ritmos Caribeños"
   });
 }
 

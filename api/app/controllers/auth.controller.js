@@ -4,7 +4,7 @@ const { User, Role, RefreshToken } = require("../config/db.config");
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
-exports.signup = (req, res) => {
+exports.signup = async (req, res) => {
   // Save User to Database
   const {
     nombre,
@@ -21,7 +21,7 @@ exports.signup = (req, res) => {
     especializacion,
     profesorado
   } = req.body;
-  User.create({
+  const newUser = User.create({
     nombre,
     apellido,
     usuario,
@@ -35,8 +35,7 @@ exports.signup = (req, res) => {
     instructorado,
     especializacion,
     profesorado
-  })
-  .then(user => {
+  }).then(user => {
     if (req.body.roles) {
       Role.findAll({
         where: {
