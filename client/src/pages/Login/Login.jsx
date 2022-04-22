@@ -5,6 +5,8 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { login } from "../../redux/actions/auth";
+import style from "./Login.module.css";
+
 const required = (value) => {
   if (!value) {
     return (
@@ -14,6 +16,7 @@ const required = (value) => {
     );
   }
 };
+
 const Login = (props) => {
   const navigate = useNavigate();
   const form = useRef();
@@ -28,10 +31,12 @@ const Login = (props) => {
     const usuario = e.target.value;
     setUsuario(usuario);
   };
+
   const onChangePassword = (e) => {
     const contraseña = e.target.value;
     setContraseña(contraseña);
   };
+
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -50,56 +55,48 @@ const Login = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   navigate("/profile");
-
-  //   return () => {
-  //     navigate("/login");
-  //   };
-  // }, [isLoggedIn, navigate]);
-
   return (
-    <div className="col-md-12">
-      <div className="card card-container">
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
-        />
-        <Form onSubmit={handleLogin} ref={form}>
-          <div className="form-group">
-            <label htmlFor="usuario">Usuario</label>
+    <div className={style.container}>
+      <div className={style.subContainer}>
+        <div className={style.profileContainer}>
+          <img
+            src="https://thumbs4.imagebam.com/6c/a5/f0/ME9I39H_t.png"
+            alt="logo512.png"
+            className={style.profileImage}
+          />
+        </div>
+        <Form className={style.formLayout} onSubmit={handleLogin} ref={form}>
+          <div className={style.formGroup}>
             <Input
               type="text"
-              className="form-control"
+              className={style.formControl}
               name="usuario"
               value={usuario}
               onChange={onChangeUsername}
               validations={[required]}
+              placeholder="Usuario"
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="contraseña">Contraseña</label>
+          <div className={style.formGroup}>
             <Input
               type="password"
-              className="form-control"
+              className={style.formControl}
               name="contraseña"
               value={contraseña}
               onChange={onChangePassword}
               validations={[required]}
+              placeholder="Contraseña"
             />
           </div>
-          <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
-              {loading && (
-                <span className="spinner-border spinner-border-sm"></span>
-              )}
-              <span>Login</span>
+          <div className={style.formGroup}>
+            <button className={style.formButton} disabled={loading}>
+              {loading && <span className={style.loading}></span>}
+              <span>Iniciar Sesión</span>
             </button>
           </div>
           {message && (
-            <div className="form-group">
-              <div className="alert alert-danger" role="alert">
+            <div className={style.messageContainer}>
+              <div className={style.message} role="alert">
                 {message}
               </div>
             </div>

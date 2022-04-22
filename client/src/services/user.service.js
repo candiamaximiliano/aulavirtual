@@ -6,6 +6,7 @@ const getPublicContent = () => {
 const getUserBoard = () => {
   return api.get("/test/user");
 };
+
 const getModeratorBoard = () => {
   return api.get("/test/mod");
 };

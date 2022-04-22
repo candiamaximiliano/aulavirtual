@@ -6,12 +6,14 @@ import {
   LOGOUT,
   SET_MESSAGE,
   REFRESH_TOKEN,
+  PUT_USER,
 } from "./types";
 import AuthService from "../../services/auth.service";
+import axios from "axios";
 
-export const register = (username, email, password) => (dispatch) => {
+export const register = (input) => (dispatch) => {
   
-  return AuthService.register(username, email, password).then(
+  return AuthService.register(input).then(
     (response) => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -79,4 +81,17 @@ export const refreshToken = (accessToken) => (dispatch) => {
     type: REFRESH_TOKEN,
     payload: accessToken,
   })
+}
+
+export function putUser(id, payload){
+  return async function(dispatch){
+    try {
+      await axios.put(`http://localhost:3001/api/user/${id}`, payload);
+      return dispatch({
+        type: PUT_USER,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

@@ -1,12 +1,8 @@
 import api from "./api";
 import TokenService from "./token.service";
 
-const register = (username, email, password) => {
-  return api.post("/auth/signup", {
-    username,
-    email,
-    password
-  });
+const register = ({ fotoDePerfil, base64, nombre, apellido, usuario, email, contraseña, dni, fechaDeNacimiento, direccion, numeroDeContacto, consentimientoWhatsapp, instructorado, especializacion, profesorado }) => {
+  return api.post("/auth/signup", { fotoDePerfil, base64, nombre, apellido, usuario, email, contraseña, dni, fechaDeNacimiento, direccion, numeroDeContacto, consentimientoWhatsapp, instructorado, especializacion, profesorado });
 };
 
 const login = (usuario, contraseña) => {

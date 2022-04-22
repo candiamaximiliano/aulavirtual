@@ -6,6 +6,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { logout } from "../../redux/actions/auth";
 import { clearMessage } from "../../redux/actions/message";
 import { history } from "../../helpers/history";
+import logo from "../../images/logo/Logotipo.png";
+import style from "./Nav.module.css";
+import logoutsvg from "../../images/navbar/logout_white_24dp.svg";
+import accountCircle from "../../images/navbar/accountCircle.png";
 
 export const Nav = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -28,61 +32,77 @@ export const Nav = () => {
   };
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <Link to={"/"} className="navbar-brand">
-          bezKoder
-        </Link>
-        <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/home"} className="nav-link">
-              Home
+      <nav className={style.navbar}>
+        <div className={style.navbarBrandContainer}>
+          <Link to={"/anuncios"} className={style.navbarBrandLink}>
+            <img
+              className={style.navbarBrand}
+              src={logo}
+              alt="foto de perfil"
+            />
+          </Link>
+        </div>
+        <div className={style.navbarItems}>
+          <li className={style.navItem}>
+            <Link to={"/anuncios"} className={style.navLink}>
+              Anuncios
             </Link>
           </li>
           {showModeratorBoard && (
-            <li className="nav-item">
-              <Link to={"/mod"} className="nav-link">
-                Moderator Board
+            <li className={style.navItem}>
+              <Link to={"/mod"} className={style.navLink}>
+                Profesor
               </Link>
             </li>
           )}
           {showAdminBoard && (
-            <li className="nav-item">
-              <Link to={"/admin"} className="nav-link">
-                Admin Board
+            <li className={style.navItem}>
+              <Link to={"/admin"} className={style.navLink}>
+                Admin
               </Link>
             </li>
           )}
           {currentUser && (
-            <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
-                User
+            <li className={style.navItem}>
+              <Link to={"/cursos"} className={style.navLink}>
+                Cursos
               </Link>
             </li>
           )}
         </div>
+        <div></div>
         {currentUser ? (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
-                {currentUser.username}
+          <div className={style.navbarUser}>
+            <li className={style.navItem}>
+              <Link to={"/profile"} className={style.navLink}>
+                <img
+                  className={style.accountCircle}
+                  src={
+                    currentUser
+                      ? "data:image/png;base64," + currentUser.base64
+                      : accountCircle
+                  }
+                  alt="account"
+                />
+                {`${currentUser.nombre} ${currentUser.apellido}`}
               </Link>
             </li>
-            <li className="nav-item">
+            <li className={style.navItem}>
               <a href="/login" className="nav-link" onClick={logOut}>
-                LogOut
+                <img src={logoutsvg} alt="logout" />
               </a>
             </li>
           </div>
         ) : (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">
-                Login
+          <div className={style.navbarUser}>
+            <li className={style.navItem}>
+              <Link to={"/login"} className={style.navLink}>
+                INICIAR SESIÓN
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to={"/register"} className="nav-link">
-                Sign Up
+            <li className={style.navItem}>
+              <Link to={"/register"} className={style.navLink}>
+                REGISTRARME
               </Link>
             </li>
           </div>

@@ -1,0 +1,113 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 10px;
+}
+
+.subContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.form {
+  background-color: white;
+  width: 70%;
+  height: 100%;
+  padding: 20px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: none;
+  border-radius: 7px;
+}
+
+.selectContainer {
+  margin: 10px;
+  width: 50%;
+  padding: 10px;
+  border: none;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aliceblue;
+}
+
+.select {
+  text-align: center;
+  border: none;
+  border-radius: 7px;
+  background-color: aliceblue;
+}
+
+.option {
+  margin: 5px;
+  padding: 2px;
+}
+
+.groupForm {
+  background-color: aliceblue;
+  width: 50%;
+  margin: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.input {
+  border-radius: 7px;
+  border: none;
+  background-color: aliceblue;
+  font-size: 1em;
+  width: 100%;
+}
+
+.buttonForm {
+  border: none;
+  border-radius: 7px;
+  background-color: var(--de-york);
+  padding: 10px;
+  margin: 10px;
+  color: white;
+}
+
+.error403 {
+  width: 40vw;
+  position: relative;
+  margin-top: -70px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.regresar {
+  background-color: rgb(196, 33, 57);
+  border: none;
+  border-radius: 7px;
+  padding: 5px 10px;
+  text-align: center;
+  position: absolute;
+  transform: translateY(125px);
+  text-decoration: none;
+  color: white;
+}
+
+.regresar:hover {
+  color: white;
+  text-decoration: none;
+}

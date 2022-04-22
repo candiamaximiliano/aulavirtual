@@ -7,6 +7,7 @@ var bcrypt = require("bcryptjs");
 exports.signup = async (req, res) => {
   // Save User to Database
   const {
+    base64,
     nombre,
     apellido,
     usuario,
@@ -22,6 +23,7 @@ exports.signup = async (req, res) => {
     profesorado
   } = req.body;
   const newUser = User.create({
+    base64,
     nombre,
     apellido,
     usuario,
@@ -91,8 +93,18 @@ exports.signin = (req, res) => {
         }
         res.status(200).send({
           id: user.id,
+          base64: user.base64,
+          nombre: user.nombre,
+          apellido: user.apellido,
           usuario: user.usuario,
           email: user.email,
+          dni: user.dni,
+          fechaDeNacimiento: user.fechaDeNacimiento,
+          direccion: user.direccion,
+          numeroDeContacto: user.numeroDeContacto,
+          instructorado: user.instructorado,
+          especializacion: user.especializacion,
+          profesorado: user.profesorado,
           roles: authorities,
           accessToken: token,
           refreshToken: refreshToken,

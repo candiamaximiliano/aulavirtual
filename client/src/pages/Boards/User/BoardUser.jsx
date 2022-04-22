@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Cursos } from "../../../components/Cursos/Cursos";
 import UserService from "../../../services/user.service";
+import style from "../Boards.module.css";
+
 const BoardUser = () => {
   const [content, setContent] = useState("");
 
@@ -27,10 +30,8 @@ const BoardUser = () => {
   }, []);
 
   return (
-    <div className="container">
-      <header className="jumbotron">
-        <h3>{content}</h3>
-      </header>
+    <div className={style.container}>
+      <Cursos />
     </div>
   );
 };

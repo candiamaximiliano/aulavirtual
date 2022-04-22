@@ -20,6 +20,11 @@ router.get(
   controller.userBoard
 );
 
+router.put(
+  "/user/:id",
+  controller.putUser
+);
+
 router.get(
   "/test/mod",
   [authJwt.verifyToken, authJwt.isModerator],

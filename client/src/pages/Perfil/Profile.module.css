@@ -1,0 +1,155 @@
+.superContainer {
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  padding: 30px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 40px;
+}
+
+.title {
+  margin-top: 40px;
+}
+
+.editContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.profileContainer {
+  background-color: rgba(242, 242, 242, 0.902);
+  border: 1.5px solid rgba(224, 224, 224, 0.744);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  margin-bottom: 20px;
+  margin-right: -20px;
+}
+
+.profileImage {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.formControlImage {
+  border: none;
+  width: 400px;
+  margin-left: 150px;
+  font-size: 0.7em;
+}
+
+.formControlImage:disabled {
+  display: none;
+}
+
+.formLayout {
+  background-color: aliceblue;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.subContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.formGroup {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 65% 15%;
+  grid-template-rows: 1fr;
+  grid-column-gap: 25px;
+  grid-row-gap: 10px;
+  justify-items: baseline;
+  align-items: center;
+  font-size: 0.85em;
+}
+
+.formInput {
+  background-color: white;
+  border: 0.9px solid gray;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  padding: 5px 10px;
+}
+
+.formInput:disabled {
+  border:none;
+  background-color: transparent;
+}
+
+.button {
+  border-radius: 50%;
+  border: none;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+
+.buttonContainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formButton {
+  border: none;
+  color: white;
+  border-radius: 7px;
+  width: 90%;
+  height: 40px;
+  margin-top: 20px;
+  background-color: #5cc8b0;
+}
+
+.inputContainer {
+  width: 100%;
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../../services/user.service";
-const Home = () => {
+const Anuncios = () => {
   const [content, setContent] = useState("");
   useEffect(() => {
     UserService.getPublicContent().then(
@@ -24,4 +24,4 @@ const Home = () => {
     </div>
   );
 };
-export default Home;
+export default Anuncios;

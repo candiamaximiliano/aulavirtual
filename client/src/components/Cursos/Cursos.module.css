@@ -1,0 +1,83 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 86.5vh;
+}
+
+.cursosContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80vh;
+}
+
+.cursosLista {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 25px;
+  grid-row-gap: 10px;
+  justify-items: center;
+  width: auto;
+  padding: 0px;
+  margin: 0px;
+}
+
+.cursosLink {
+  background-color: rgba(255, 250, 250, 0.7);
+  border: 0.5px solid gray;
+  border-radius: 8px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 250px;
+  margin-top: -150px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.cursosLink:hover {
+  margin: -153px -10px -10px -10px;
+  height: 107px;
+  width: 257px;
+}
+
+.cursosItems {
+  color: black;
+  height: 50px;
+  width: 150px;
+  text-align: center;
+  align-content: center;
+  list-style-type: none;
+}
+
+.error403 {
+  width: 40vw;
+  position: relative;
+  margin-top: -70px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.regresar {
+  background-color: rgb(196, 33, 57);
+  border: none;
+  border-radius: 7px;
+  padding: 5px 10px;
+  text-align: center;
+  position: absolute;
+  transform: translateY(125px);
+  text-decoration: none;
+  color: white;
+}
+
+.regresar:hover {
+  color: white;
+  text-decoration: none;
+}

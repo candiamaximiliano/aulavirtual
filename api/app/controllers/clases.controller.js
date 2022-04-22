@@ -67,12 +67,26 @@ const postClase = async (req, res, next) =>{
       profesores, 
       recursos, 
     } = req.body;
+
+    const parseStringToArray = (str) => {
+      let array = str.split(", ")
+    return array;
+ }  
+
+    console.log({
+      curso,
+      materia,  
+      nombre, 
+      url, 
+      profesores, 
+      recursos, 
+    })
     
     const newClase = await Clase.create({
       nombre, 
       url, 
-      profesores, 
-      recursos,
+      profesores: parseStringToArray(profesores), 
+      recursos: parseStringToArray(recursos),
     });
 
     const cursoDB = await Curso.findOne({
@@ -110,6 +124,11 @@ const putClase = async (req, res, next) =>{
     const { id } = req.params;
     const { nombre, url, profesores, recursos } = req.body;
 
+//     const parseStringToArray = (str) => {
+//       let array = str.split(", ")
+//     return array;
+//  }  
+
     const claseEncontrada = await Clase.findOne({
       where: { id: id },
     });
@@ -134,6 +153,7 @@ const putClase = async (req, res, next) =>{
 const deleteClase = async (req, res, next) =>{
   try {
     const { id } = req.params;
+    console.log(id)
     await Clase.destroy({
       where: {
         id: id,

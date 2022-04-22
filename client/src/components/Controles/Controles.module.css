@@ -1,0 +1,107 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 15px;
+}
+
+.subContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 15px;
+}
+
+.link {
+  background-color: var(--de-york);
+  color: white;
+  border: none;
+  border-radius: 7px;
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.lista {
+  width: 50%;
+  border: none;
+  height: 100%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.item {
+  background-color: aliceblue;
+  padding: 20px;
+  border-radius: 7px;
+  border: none;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  height: 30px;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.button {
+  border-radius: 50%;
+  border: none;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+
+.error403 {
+  width: 40vw;
+  position: relative;
+  margin-top: -70px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.regresar {
+  background-color: rgb(196, 33, 57);
+  border: none;
+  border-radius: 7px;
+  padding: 5px 10px;
+  text-align: center;
+  position: absolute;
+  transform: translateY(125px);
+  text-decoration: none;
+  color: white;
+}
+
+.regresar:hover {
+  color: white;
+  text-decoration: none;
+}

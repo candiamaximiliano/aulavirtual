@@ -11,7 +11,11 @@ module.exports = (sequelize) => {
       primaryKey: true,
     },
     fotoDePerfil: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
+      defaultValue: 'zunzuncito',
+    },
+    base64: {
+      type: DataTypes.TEXT,
       defaultValue: 'zunzuncito',
     },
     nombre: {

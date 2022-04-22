@@ -5,6 +5,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   REFRESH_TOKEN,
+  PUT_USER
 } from "../actions/types";
 
 const user = JSON.parse(sessionStorage.getItem("user"));
@@ -55,6 +56,11 @@ export default function rootReducer (state = initialState, action) {
       return {
         ...state,
         user: { ...user, accessToken: payload },
+      };
+
+    case PUT_USER:
+      return {
+        ...state,
       };
       
     default:
