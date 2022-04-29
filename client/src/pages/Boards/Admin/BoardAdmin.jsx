@@ -43,6 +43,9 @@ const BoardAdmin = () => {
           <Link className={style.button} to="materias">
             Materias
           </Link>
+          <Link className={style.button} to="anuncios">
+            Anuncios
+          </Link>
         </div>
       ) : (
         <div>

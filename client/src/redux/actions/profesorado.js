@@ -1,5 +1,60 @@
 import axios from 'axios';
-import { GET_CURSOS, GET_MATERIAS, GET_CLASES, POST_CLASES, PUT_CLASES, PUT_MATERIAS, DELETE_CLASES, DELETE_MATERIAS } from "./types";
+import { GET_CURSOS, GET_MATERIAS, GET_CLASES, POST_CLASES, PUT_CLASES, PUT_MATERIAS, DELETE_CLASES, DELETE_MATERIAS, GET_ANUNCIOS, POST_ANUNCIOS, PUT_ANUNCIOS, DELETE_ANUNCIOS } from "./types";
+
+//Anuncios
+
+export function getAnuncios(){
+  return async function(dispatch){
+    try {
+      var json = await axios.get(`http://localhost:3001/api/anuncios`);
+      return dispatch({
+        type: GET_ANUNCIOS,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+};
+
+export function postAnuncios(payload){
+  return async function(dispatch){
+    try {
+      await axios.post(`http://localhost:3001/api/anuncios`, payload);
+      return dispatch({
+        type: POST_ANUNCIOS,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+export function putAnuncios(id, payload){
+  return async function(dispatch){
+    try {
+      await axios.put(`http://localhost:3001/api/anuncios/${id}`, payload);
+      return dispatch({
+        type: PUT_ANUNCIOS,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+export function deleteAnuncios(id){
+  return async function(dispatch){
+    try {
+      await axios.delete(`http://localhost:3001/api/anuncios/${id}`);
+      return dispatch({
+        type: DELETE_ANUNCIOS,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
 
 //Cursos
 

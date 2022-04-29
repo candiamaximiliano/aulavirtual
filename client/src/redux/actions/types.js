@@ -18,3 +18,8 @@ export const GET_CLASES = "GET_CLASES";
 export const POST_CLASES = "POST_CLASES";
 export const PUT_CLASES = "PUT_CLASES";
 export const DELETE_CLASES = "DELETE_CLASES";
+//ANUNCIOS
+export const GET_ANUNCIOS = "GET_ANUNCIOS";
+export const POST_ANUNCIOS = "POST_ANUNCIOS";
+export const PUT_ANUNCIOS = "PUT_ANUNCIOS";
+export const DELETE_ANUNCIOS = "DELETE_ANUNCIOS";

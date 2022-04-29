@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getCursos, postClases } from "../../redux/actions/profesorado";
+import { getAnuncios, postAnuncios } from "../../redux/actions/profesorado";
 import style from "./SubirClase.module.css";
 import accesoDenegado from "../../images/error/403.png";
 
-export const SubirClase = () => {
+export const SubirAnuncio = () => {
   const dispatch = useDispatch();
 
   const { user: currentUser } = useSelector((state) => state.auth);
-  const cursos = useSelector((state) => state.profesorado.cursos);
+  const anuncios = useSelector((state) => state.profesorado.anuncios);
 
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
   const [input, setInput] = useState({
-    curso: "",
-    materia: "",
-    nombre: "",
+    base64: "",
+    titulo: "",
+    subtitulo: "",
     url: "",
-    profesores: "",
+    texto: "",
     recursos: "",
   });
 
@@ -36,21 +36,43 @@ export const SubirClase = () => {
       ...input,
       [e.target.name]: e.target.value,
     });
+    showFile();
   };
+
+  const imgProfile = useRef();
+
+  function showFile() {
+    var demoImage = imgProfile.current;
+    var file = document.querySelector("input[type=file]").files[0];
+    var reader = new FileReader();
+    reader.onload = function (event) {
+      demoImage.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+    console.log(file);
+    let base64;
+    setTimeout(() => {
+      base64 = demoImage.src.split(",");
+      setInput({
+        ...input,
+        base64: base64[1],
+      });
+    }, 1000);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input.curso && input.materia && input.nombre && input.url) {
-      dispatch(postClases(input));
+    if (input.base64 && input.titulo) {
+      dispatch(postAnuncios(input));
       setSuccess(true);
       // alert("Clase subida correctamente");
       setErrors("");
       setInput({
-        curso: "",
-        materia: "",
-        nombre: "",
+        base64: "",
+        titulo: "",
+        subtitulo: "",
         url: "",
-        profesores: "",
+        texto: "",
         recursos: "",
       });
     } else {
@@ -60,50 +82,44 @@ export const SubirClase = () => {
   };
 
   useEffect(() => {
-    dispatch(getCursos());
+    dispatch(getAnuncios());
   }, [dispatch]);
 
   return (
     <div className={style.container}>
       {currentUser.roles[1] === "ROLE_ADMIN" ? (
         <div className={style.subContainer}>
+          <img
+            className={style.profileImage}
+            src={"data:image/png;base64," + currentUser.base64}
+            alt="foto de perfil"
+            ref={imgProfile}
+          />
           <form
             className={style.form}
             onSubmit={(e) => {
               handleSubmit(e);
             }}
           >
-            <div className={style.selectContainer}>
-              <select
-                className={style.select}
-                onChange={(e) => {
-                  handleOnSelect(e);
-                }}
-              >
-                <option className={style.option} disabled selected>
-                  Selecciona un curso
-                </option>
-                {cursos?.map((curso) => (
-                  <option
-                    className={style.option}
-                    value={curso.nombre}
-                    key={curso.id + "curso"}
-                  >
-                    {curso.nombre}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <input
+              type="file"
+              // accept="image/x-png,image/jpeg"
+              className={style.formControlImage}
+              name="fotoDePerfil"
+              value={input.fotoDePerfil}
+              onChange={handleOnChange}
+              placeholder="Foto de perfil"
+            />
             <div className={style.groupForm}>
               <input
                 className={style.input}
                 type="text"
-                value={input.materia}
-                name="materia"
+                value={input.titulo}
+                name="titulo"
                 onChange={(e) => {
                   handleOnChange(e);
                 }}
-                placeholder="Materia a la que pertenece"
+                placeholder="Titulo"
                 autoComplete="off"
               ></input>
             </div>
@@ -111,12 +127,12 @@ export const SubirClase = () => {
               <input
                 className={style.input}
                 type="text"
-                value={input.nombre}
-                name="nombre"
+                value={input.subtitulo}
+                name="subtitulo"
                 onChange={(e) => {
                   handleOnChange(e);
                 }}
-                placeholder="Nombre de la clase"
+                placeholder="Subtitulo"
                 autoComplete="off"
               ></input>
             </div>
@@ -129,7 +145,7 @@ export const SubirClase = () => {
                 onChange={(e) => {
                   handleOnChange(e);
                 }}
-                placeholder="Url del video"
+                placeholder="Url"
                 autoComplete="off"
               ></input>
             </div>
@@ -137,9 +153,9 @@ export const SubirClase = () => {
               <input
                 className={style.input}
                 type="text"
-                value={input.profesores}
-                name="profesores"
-                placeholder="Profesor/a/es"
+                value={input.texto}
+                name="texto"
+                placeholder="Texto"
                 autoComplete="off"
                 onChange={(e) => {
                   handleOnChange(e);
@@ -155,13 +171,13 @@ export const SubirClase = () => {
                 onChange={(e) => {
                   handleOnChange(e);
                 }}
-                placeholder="Recursos asociados a la clase"
+                placeholder="Recursos asociados al anuncio"
                 autoComplete="off"
               ></input>
             </div>
             <div>
               <button className={style.buttonForm} type="submit">
-                Subir Video
+                Subir Anuncio
               </button>
             </div>
           </form>

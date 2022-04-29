@@ -1,25 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { getCursos, postClases } from "../../redux/actions/profesorado";
-import style from "./SubirClase.module.css";
+import { getAnuncios, putAnuncios } from "../../redux/actions/profesorado";
+import style from "./Modificadores.module.css";
 import accesoDenegado from "../../images/error/403.png";
 
-export const SubirClase = () => {
+export const AnunciosModificador = () => {
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   const { user: currentUser } = useSelector((state) => state.auth);
-  const cursos = useSelector((state) => state.profesorado.cursos);
+
+  useEffect(() => {
+    dispatch(getAnuncios());
+  }, [dispatch]);
+
+  const anuncios = useSelector((state) => state.profesorado.anuncios);
+
+  let anuncioFiltrado = anuncios.find((anuncio) => {
+    return Number(anuncio.id) === Number(id);
+  });
 
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
   const [input, setInput] = useState({
-    curso: "",
-    materia: "",
-    nombre: "",
-    url: "",
-    profesores: "",
-    recursos: "",
+    base64: anuncioFiltrado.base64,
+    titulo: anuncioFiltrado.titulo,
+    subtitulo: anuncioFiltrado.subtitulo,
+    url: anuncioFiltrado.url,
+    texto: anuncioFiltrado.texto,
+    recursos: anuncioFiltrado.recursos,
   });
 
   const handleOnSelect = (e) => {
@@ -36,22 +47,50 @@ export const SubirClase = () => {
       ...input,
       [e.target.name]: e.target.value,
     });
+    // setErrors(
+    //   validate({
+    //     ...input,
+    //     [e.target.name]: e.target.value,
+    //   })
+    // );
+    showFile();
   };
+
+  const imgProfile = useRef();
+
+  function showFile() {
+    var demoImage = imgProfile.current;
+    var file = document.querySelector("input[type=file]").files[0];
+    var reader = new FileReader();
+    reader.onload = function (event) {
+      demoImage.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+    console.log(file);
+    let base64;
+    setTimeout(() => {
+      base64 = demoImage.src.split(",");
+      setInput({
+        ...input,
+        base64: base64[1],
+      });
+    }, 1000);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input.curso && input.materia && input.nombre && input.url) {
-      dispatch(postClases(input));
+    if (input.nombre && input.url) {
+      dispatch(putAnuncios(id, input));
       setSuccess(true);
       // alert("Clase subida correctamente");
       setErrors("");
       setInput({
-        curso: "",
-        materia: "",
-        nombre: "",
-        url: "",
-        profesores: "",
-        recursos: "",
+        base64: anuncioFiltrado.base64,
+        titulo: anuncioFiltrado.titulo,
+        subtitulo: anuncioFiltrado.subtitulo,
+        url: anuncioFiltrado.url,
+        texto: anuncioFiltrado.texto,
+        recursos: anuncioFiltrado.recursos,
       });
     } else {
       alert("DATA REQUIRED");
@@ -60,63 +99,45 @@ export const SubirClase = () => {
   };
 
   useEffect(() => {
-    dispatch(getCursos());
+    dispatch(getAnuncios());
   }, [dispatch]);
 
   return (
     <div className={style.container}>
       {currentUser.roles[1] === "ROLE_ADMIN" ? (
         <div className={style.subContainer}>
+          <h1>Modificar clase: {anuncioFiltrado?.titulo}</h1>
+          <img
+            className={style.profileImage}
+            src={"data:image/png;base64," + currentUser.base64}
+            alt="foto de perfil"
+            ref={imgProfile}
+          />
           <form
             className={style.form}
             onSubmit={(e) => {
               handleSubmit(e);
             }}
           >
-            <div className={style.selectContainer}>
-              <select
-                className={style.select}
-                onChange={(e) => {
-                  handleOnSelect(e);
-                }}
-              >
-                <option className={style.option} disabled selected>
-                  Selecciona un curso
-                </option>
-                {cursos?.map((curso) => (
-                  <option
-                    className={style.option}
-                    value={curso.nombre}
-                    key={curso.id + "curso"}
-                  >
-                    {curso.nombre}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className={style.groupForm}>
-              <input
-                className={style.input}
-                type="text"
-                value={input.materia}
-                name="materia"
-                onChange={(e) => {
-                  handleOnChange(e);
-                }}
-                placeholder="Materia a la que pertenece"
-                autoComplete="off"
-              ></input>
-            </div>
+            <input
+              type="file"
+              // accept="image/x-png,image/jpeg"
+              className={style.formControlImage}
+              name="fotoDePerfil"
+              value={input.fotoDePerfil}
+              onChange={handleOnChange}
+              placeholder="Foto de perfil"
+            />
             <div className={style.groupForm}>
               <input
                 className={style.input}
                 type="text"
                 value={input.nombre}
-                name="nombre"
+                name="titulo"
                 onChange={(e) => {
                   handleOnChange(e);
                 }}
-                placeholder="Nombre de la clase"
+                placeholder={anuncioFiltrado.titulo}
                 autoComplete="off"
               ></input>
             </div>
@@ -125,11 +146,11 @@ export const SubirClase = () => {
                 className={style.input}
                 type="text"
                 value={input.url}
-                name="url"
+                name="subtitulo"
                 onChange={(e) => {
                   handleOnChange(e);
                 }}
-                placeholder="Url del video"
+                placeholder={anuncioFiltrado.subtitulo}
                 autoComplete="off"
               ></input>
             </div>
@@ -138,8 +159,21 @@ export const SubirClase = () => {
                 className={style.input}
                 type="text"
                 value={input.profesores}
-                name="profesores"
-                placeholder="Profesor/a/es"
+                name="url"
+                placeholder={anuncioFiltrado.url}
+                autoComplete="off"
+                onChange={(e) => {
+                  handleOnChange(e);
+                }}
+              ></input>
+            </div>
+            <div className={style.groupForm}>
+              <input
+                className={style.input}
+                type="text"
+                value={input.profesores}
+                name="texto"
+                placeholder={anuncioFiltrado.texto}
                 autoComplete="off"
                 onChange={(e) => {
                   handleOnChange(e);
@@ -155,13 +189,13 @@ export const SubirClase = () => {
                 onChange={(e) => {
                   handleOnChange(e);
                 }}
-                placeholder="Recursos asociados a la clase"
+                placeholder={anuncioFiltrado.recursos}
                 autoComplete="off"
               ></input>
             </div>
             <div>
               <button className={style.buttonForm} type="submit">
-                Subir Video
+                Actualizar Anuncio
               </button>
             </div>
           </form>

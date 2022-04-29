@@ -72,16 +72,6 @@ const postClase = async (req, res, next) =>{
       let array = str.split(", ")
     return array;
  }  
-
-    console.log({
-      curso,
-      materia,  
-      nombre, 
-      url, 
-      profesores, 
-      recursos, 
-    })
-    
     const newClase = await Clase.create({
       nombre, 
       url, 
@@ -134,17 +124,22 @@ const putClase = async (req, res, next) =>{
     });
 
     claseEncontrada === null
+
     ? res.status(404).send('No se encontró una clase con ese id')
+
     : await Clase.update({
         nombre: nombre,
         url: url,
-        profesores: profesores,
-        recursos: recursos,
+        profesores: parseStringToArray(profesores),
+        recursos: parseStringToArray(recursos),
       },
+
       { where: { id: id}
       });
+
     res.send('Clase actualizada correctamente')
   } catch (error) {
+
     console.error(error);
     next(error);
   }

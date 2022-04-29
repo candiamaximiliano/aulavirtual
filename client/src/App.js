@@ -20,10 +20,14 @@ import { Materias } from "./components/Materias/Materias";
 import { Clases } from "./components/Clases/Clases";
 import { MateriasControl } from "./components/Controles/MateriasControl";
 import { ClasesControl } from "./components/Controles/ClasesControl";
+import { AnunciosControl } from "./components/Controles/AnunciosControl";
 import { ClasesModificador } from "./components/Controles/ClasesModificador";
+import { AnunciosModificador } from "./components/Controles/AnunciosModificador";
 import { SubirClase } from "./components/Controles/SubirClase";
+import { SubirAnuncio } from "./components/Controles/SubirAnuncio";
 import { MateriasModificador } from "./components/Controles/MateriasModificador";
 import { NotFound } from "./pages/Error/NotFound";
+import Detail from "./pages/Detail/Detail";
 
 
 function App() {
@@ -33,6 +37,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LogoApp />} />
           <Route path="/anuncios" element={<Anuncios />} />
+          <Route path="/anuncios/:id" element={<Detail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
@@ -47,6 +52,9 @@ function App() {
           <Route path="/admin/clases" element={<ClasesControl />} />
           <Route path="/admin/clases/:id" element={<ClasesModificador />} />
           <Route path="/admin/clases/upload" element={<SubirClase />} />
+          <Route path="/admin/anuncios" element={<AnunciosControl />} />
+          <Route path="/admin/anuncios/:id" element={<AnunciosModificador />} />
+          <Route path="/admin/anuncios/upload" element={<SubirAnuncio />} />
           <Route path="/*" element={<NotFound />} />
       </Routes>
       </>

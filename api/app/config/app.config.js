@@ -10,6 +10,7 @@ const auth = require('../routes/auth.routes');
 const clases = require('../routes/clases.routes');
 const cursos = require('../routes/cursos.routes');
 const materias = require('../routes/materias.routes');
+const anuncios = require('../routes/anuncios.routes');
 
 require('../config/db.config');
 
@@ -42,6 +43,7 @@ server.get('/', (req, res, next) =>{
 // routes
 server.use('/api', auth);
 server.use('/api', user);
+server.use('/api', anuncios);
 server.use('/api', clases);
 server.use('/api', materias);
 server.use('/api', cursos);
