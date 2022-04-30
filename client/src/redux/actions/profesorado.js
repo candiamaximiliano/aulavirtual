@@ -6,7 +6,7 @@ import { GET_CURSOS, GET_MATERIAS, GET_CLASES, POST_CLASES, PUT_CLASES, PUT_MATE
 export function getAnuncios(){
   return async function(dispatch){
     try {
-      var json = await axios.get(`http://localhost:3001/api/anuncios`);
+      var json = await axios.get(`http://fundacioncrearte.online/api/anuncios`);
       return dispatch({
         type: GET_ANUNCIOS,
         payload: json.data,
@@ -20,7 +20,7 @@ export function getAnuncios(){
 export function postAnuncios(payload){
   return async function(dispatch){
     try {
-      await axios.post(`http://localhost:3001/api/anuncios`, payload);
+      await axios.post(`http://fundacioncrearte.online/api/anuncios`, payload);
       return dispatch({
         type: POST_ANUNCIOS,
       });
@@ -33,7 +33,7 @@ export function postAnuncios(payload){
 export function putAnuncios(id, payload){
   return async function(dispatch){
     try {
-      await axios.put(`http://localhost:3001/api/anuncios/${id}`, payload);
+      await axios.put(`http://fundacioncrearte.online/api/anuncios/${id}`, payload);
       return dispatch({
         type: PUT_ANUNCIOS,
       });
@@ -46,7 +46,7 @@ export function putAnuncios(id, payload){
 export function deleteAnuncios(id){
   return async function(dispatch){
     try {
-      await axios.delete(`http://localhost:3001/api/anuncios/${id}`);
+      await axios.delete(`http://fundacioncrearte.online/api/anuncios/${id}`);
       return dispatch({
         type: DELETE_ANUNCIOS,
       });
@@ -61,7 +61,7 @@ export function deleteAnuncios(id){
 export function getCursos(){
   return async function(dispatch){
     try {
-      var json = await axios.get(`http://localhost:3001/api/cursos`);
+      var json = await axios.get(`http://fundacioncrearte.online/api/cursos`);
       return dispatch({
         type: GET_CURSOS,
         payload: json.data,
@@ -77,7 +77,7 @@ export function getCursos(){
 export function getMaterias(){
   return async function(dispatch){
     try {
-      var json = await axios.get(`http://localhost:3001/api/materias`);
+      var json = await axios.get(`http://fundacioncrearte.online/api/materias`);
       return dispatch({
         type: GET_MATERIAS,
         payload: json.data,
@@ -91,7 +91,7 @@ export function getMaterias(){
 export function putMaterias(id, payload){
   return async function(dispatch){
     try {
-      await axios.put(`http://localhost:3001/api/materias/${id}`, payload);
+      await axios.put(`http://fundacioncrearte.online/api/materias/${id}`, payload);
       return dispatch({
         type: PUT_MATERIAS,
       });
@@ -104,7 +104,7 @@ export function putMaterias(id, payload){
 export function deleteMaterias(id){
   return async function(dispatch){
     try {
-      await axios.delete(`http://localhost:3001/api/materias/${id}`);
+      await axios.delete(`http://fundacioncrearte.online/api/materias/${id}`);
       return dispatch({
         type: DELETE_MATERIAS,
       });
@@ -119,7 +119,7 @@ export function deleteMaterias(id){
 export function getClases(){
   return async function(dispatch){
     try {
-      var json = await axios.get(`http://localhost:3001/api/clases`);
+      var json = await axios.get(`http://fundacioncrearte.online/api/clases`);
       return dispatch({
         type: GET_CLASES,
         payload: json.data,
@@ -133,7 +133,7 @@ export function getClases(){
 export function postClases(payload){
   return async function(dispatch){
     try {
-      await axios.post(`http://localhost:3001/api/clases`, payload);
+      await axios.post(`http://fundacioncrearte.online/api/clases`, payload);
       return dispatch({
         type: POST_CLASES,
       });
@@ -146,7 +146,7 @@ export function postClases(payload){
 export function putClases(id, payload){
   return async function(dispatch){
     try {
-      await axios.put(`http://localhost:3001/api/clases/${id}`, payload);
+      await axios.put(`http://fundacioncrearte.online/api/clases/${id}`, payload);
       return dispatch({
         type: PUT_CLASES,
       });
@@ -159,7 +159,7 @@ export function putClases(id, payload){
 export function deleteClases(id){
   return async function(dispatch){
     try {
-      await axios.delete(`http://localhost:3001/api/clases/${id}`);
+      await axios.delete(`http://fundacioncrearte.online/api/clases/${id}`);
       return dispatch({
         type: DELETE_CLASES,
       });

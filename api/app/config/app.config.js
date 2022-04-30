@@ -24,7 +24,7 @@ server.use(cookieParser());
 server.use(morgan('dev'));
 // server.use(cors())
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', 'http://fundacioncrearte.online'); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Access-Token');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
@@ -32,7 +32,7 @@ server.use((req, res, next) => {
 });
 
 //simple route
-server.get('/', (req, res, next) =>{
+server.get('/api', (req, res, next) =>{
   try {
     res.send('API Aula Virtual Profesorado en Ritmos Caribeños');
   } catch (error) {
