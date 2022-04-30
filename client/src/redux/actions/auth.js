@@ -86,7 +86,7 @@ export const refreshToken = (accessToken) => (dispatch) => {
 export function putUser(id, payload){
   return async function(dispatch){
     try {
-      await axios.put(`http://localhost:3001/api/user/${id}`, payload);
+      await axios.put(`http://fundacioncrearte.online/api/user/${id}`, payload);
       return dispatch({
         type: PUT_USER,
       });
