@@ -32,7 +32,7 @@ server.use((req, res, next) => {
 });
 
 //simple route
-server.get('/', (req, res, next) =>{
+server.get('/api', (req, res, next) =>{
   try {
     res.send('API Aula Virtual Profesorado en Ritmos Caribeños');
   } catch (error) {
